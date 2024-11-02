@@ -6,4 +6,4 @@
   - name: Install the latest version of Apache
     yum:
       name: httpd
-      state: lates
+      state: latest
