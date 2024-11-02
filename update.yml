@@ -3,5 +3,5 @@
   become: yes
   hosts: 192.168.154.131
   tasks:
-  - ansible.builtin.package:
-      do-release-upgrade: yes
+  - shell:
+      do-release-upgrade -y
