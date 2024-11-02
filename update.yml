@@ -4,5 +4,5 @@
   hosts: 192.168.154.131
   tasks:
   - ansible.builtin.package:
-      name: "*"
+      name: do-release-upgrade
       state: latest
