@@ -1,0 +1,9 @@
+---
+- name: Install Apache
+  hosts: 192.168.154.132
+  become: yes
+  tasks:
+  - name: Install the latest version of Apache
+    yum:
+      name: httpd
+      state: lates
