@@ -8,5 +8,6 @@
       name: httpd
       state: latest
   - name: Start Service
-      service: httpd
+    service: 
+      name: httpd
       state: started	  
