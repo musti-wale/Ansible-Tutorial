@@ -7,5 +7,5 @@
   - name: Create test user
     user:
       name: testusr
-      state: absent 
+      state: present 
 
