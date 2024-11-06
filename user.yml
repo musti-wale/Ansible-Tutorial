@@ -6,6 +6,6 @@
   tasks:
   - name: Create test user
     user:
-    - name: testusr
+      name: testusr
       state: absent 
 
