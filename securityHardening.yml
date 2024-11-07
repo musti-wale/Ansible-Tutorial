@@ -1,0 +1,29 @@
+---
+- name: Server Security Hardening
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Modify sshd_config file
+    lineinfile: 
+      path: /etc/ssh/sshd_config
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      state: present
+      validate: "sshd -T -f %s"
+    with_items:
+      - regexp: "^X11Forwarding"
+        line: "X11Forwarding yes"
+      - regexp: "P^ermitRootLogin"
+        line: "PermitRootLogin no"
+      - regexp: "^PasswordAuthentication"
+        line: "PasswordAuthentication yes"
+      - regexp: "^PermitEmptyPasswords"
+        line: "PermitEmptyPasswords no"
+    notify: Restart ssh
+      
+  handlers:
+  - name: Restart ssh
+    service:
+      name: sshd
+      state: restarted 
