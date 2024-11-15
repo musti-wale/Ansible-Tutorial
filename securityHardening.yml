@@ -12,16 +12,17 @@
       state: present
       validate: "sshd -T -f %s"
     with_items:
-      - regexp: "^X11Forwarding"
-        line: "X11Forwarding yes"
-      - regexp: "P^ermitRootLogin"
-        line: "PermitRootLogin no"
-      - regexp: "^PasswordAuthentication"
-        line: "PasswordAuthentication yes"
-      - regexp: "^PermitEmptyPasswords"
-        line: "PermitEmptyPasswords no"
+      - { regexp: "^X11Forwarding" , line: "X11Forwarding no" }
+      - { regexp: "P^ermitRootLogin", line: "PermitRootLogin no" }
+      - { regexp: "^PasswordAuthentication" , line: "PasswordAuthentication yes" }
+      - { regexp: "^PermitEmptyPasswords" , line: "PermitEmptyPasswords no" }
+    register: output
     notify: Restart ssh
-      
+
+  - name: Display output 
+    debug:
+      msg: "{{ output.changed }}"
+    
   handlers:
   - name: Restart ssh
     service:
