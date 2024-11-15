@@ -1,0 +1,16 @@
+---
+- hosts: 192.168.154.132
+  gather_facts: no
+  vars:
+    packages:
+      - vim
+      - dig
+      - apache
+    web:
+      'linux' : ' httpd'
+      'ubuntu': 'apache'
+  tasks:
+  - debug:
+     var: packages
+  - debug:
+     var:  web
